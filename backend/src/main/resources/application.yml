@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: irrigacao-iot-platform
+  datasource:
+    url: jdbc:postgresql://localhost:5432/irrigacao
+    username: irrigacao
+    password: irrigacao
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /docs
+
+irrigacao:
+  mock-gateway:
+    enabled: true
+    intervalo-simulacao-segundos: 10

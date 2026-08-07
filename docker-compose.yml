@@ -1,0 +1,30 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: irrigacao-postgres
+    environment:
+      POSTGRES_DB: irrigacao
+      POSTGRES_USER: irrigacao
+      POSTGRES_PASSWORD: irrigacao
+    ports:
+      - "5432:5432"
+    volumes:
+      - irrigacao_pg_data:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+
+  backend:
+    build: ./backend
+    container_name: irrigacao-backend
+    depends_on:
+      - postgres
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/irrigacao
+      SPRING_DATASOURCE_USERNAME: irrigacao
+      SPRING_DATASOURCE_PASSWORD: irrigacao
+    ports:
+      - "8080:8080"
+
+volumes:
+  irrigacao_pg_data:
