@@ -44,6 +44,22 @@ public class AutomationEngineService {
         }
     }
 
+    /**
+     * Dispara uma avaliacao imediata de todas as regras ativas, sem esperar
+     * o proximo ciclo do {@code @Scheduled}. Usado pelo Mock Gateway logo
+     * apos simular um novo ciclo de leituras, para que a irrigacao reaja
+     * sem atraso ao novo nivel do reservatorio e/ou umidade.
+     *
+     * O nivel do reservatorio informado corresponde a leitura mock recem
+     * gerada; a avaliacao em si sempre le o valor mais recente persistido
+     * via {@link ReadingService}, portanto o parametro e apenas informativo
+     * (mantido para uso futuro, ex.: short-circuit quando o reservatorio
+     * estiver criticamente baixo).
+     */
+    public void avaliarTodas(BigDecimal nivelReservatorioAtual) {
+        avaliarRegras();
+    }
+
     private void avaliar(AutomationRule regra) {
         Optional<Reading> umidade = readingService.ultimaLeitura(regra.getSensorUmidadeId());
         Optional<Reading> reservatorio = readingService.ultimaLeitura(regra.getSensorReservatorioId());

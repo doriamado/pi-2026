@@ -75,14 +75,39 @@ mudança na API pública.
 ```bash
 # banco + backend
 docker compose up -d postgres
-cd backend && ./mvnw spring-boot:run
+./mvnw -f backend spring-boot:run
+# (no Windows: mvnw.cmd -f backend spring-boot:run)
 
 # frontend
 cd frontend && npm install && npm run dev
 ```
 
+O `mvnw`/`mvnw.cmd` ficam na raiz do projeto (não dentro de `backend/`) e não
+exigem Maven instalado na máquina: na primeira execução eles baixam o Maven
+Wrapper oficial e, em seguida, a versão do Maven definida em
+`.mvn/wrapper/maven-wrapper.properties`. É necessário ter conexão com a
+internet na primeira execução e o JDK 21 configurado (`JAVA_HOME` ou `java`
+no PATH).
+
 O frontend espera o backend em `http://localhost:8080` (configurável via
 `VITE_API_URL`). CORS já liberado para `http://localhost:5173`.
+
+## Rodando no VS Code
+
+O projeto já vem com `.vscode/extensions.json` sugerindo as extensões
+necessárias (Java/Spring Boot no backend, ESLint/Prettier/Tailwind no
+frontend). Ao abrir a pasta, o VS Code deve oferecer para instalá-las
+automaticamente — aceite a sugestão, ou instale manualmente pela aba de
+Extensões. Principais:
+
+- **Extension Pack for Java** (`vscjava.vscode-java-pack`) — suporte a Java/Maven, já inclui suporte a Lombok no language server.
+- **Spring Boot Extension Pack** (`vmware.vscode-spring-boot`) — rodar/depurar a aplicação, autocomplete de `application.yml`.
+- **ESLint** / **Prettier** / **Tailwind CSS IntelliSense** — para o frontend.
+- **Docker** (`ms-azuretools.vscode-docker`) — subir o `docker-compose.yml` pela interface.
+
+Com as extensões instaladas, use o botão "Run" sobre `IrrigacaoApplication.java`
+(ou `F5`, já há um `launch.json` configurado) para rodar o backend direto pela
+IDE, sem precisar do terminal.
 
 ## Pendências conhecidas (fora do escopo desta estruturação inicial)
 

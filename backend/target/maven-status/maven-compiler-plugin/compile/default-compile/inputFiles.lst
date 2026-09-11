@@ -1,55 +1,55 @@
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\actuators\application\ActuatorService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\actuators\domain\Actuator.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\actuators\domain\ActuatorType.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\actuators\repository\ActuatorRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\api\AlertController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\application\AlertService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\Alert.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\AlertSeverity.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\AlertStatus.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\alerts\repository\AlertRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\automation\api\AutomationController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\automation\application\AutomationEngineService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\automation\application\AutomationRuleService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\automation\domain\AutomationRule.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\automation\repository\AutomationRuleRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\common\BaseEntity.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\common\JpaAuditingConfig.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\common\WebConfig.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\dashboard\api\DashboardController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\dashboard\application\DashboardService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\dashboard\dto\DashboardSummaryDTO.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\api\DeviceController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\application\DeviceService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\domain\Device.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\domain\DeviceStatus.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\domain\DeviceType.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\devices\repository\DeviceRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\events\application\EventPublisher.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\events\domain\Event.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\events\domain\EventType.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\events\repository\EventRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\gateway\DeviceGateway.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\gateway\GatewaySource.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\IrrigacaoApplication.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\irrigation\api\IrrigationController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\irrigation\application\IrrigationService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\irrigation\domain\IrrigationSession.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\irrigation\domain\IrrigationSessionStatus.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\irrigation\repository\IrrigationSessionRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\mock\MockGatewayService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\mock\MockSensorState.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\mock\MockSimulationScheduler.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\readings\api\ReadingController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\readings\application\ReadingService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\readings\domain\Reading.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\readings\repository\ReadingRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\sensors\api\SensorController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\sensors\application\SensorService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\sensors\domain\Sensor.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\sensors\domain\SensorType.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\sensors\repository\SensorRepository.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\users\api\UserController.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\users\application\UserService.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\users\domain\User.java
-C:\Users\Dori amado\Downloads\irrigacao-iot-platform\backend\src\main\java\com\eldorado\irrigacao\users\repository\UserRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\actuators\application\ActuatorService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\actuators\domain\Actuator.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\actuators\domain\ActuatorType.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\actuators\repository\ActuatorRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\api\AlertController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\application\AlertService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\Alert.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\AlertSeverity.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\domain\AlertStatus.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\alerts\repository\AlertRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\automation\api\AutomationController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\automation\application\AutomationEngineService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\automation\application\AutomationRuleService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\automation\domain\AutomationRule.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\automation\repository\AutomationRuleRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\common\BaseEntity.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\common\JpaAuditingConfig.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\common\WebConfig.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\dashboard\api\DashboardController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\dashboard\application\DashboardService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\dashboard\dto\DashboardSummaryDTO.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\api\DeviceController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\application\DeviceService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\domain\Device.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\domain\DeviceStatus.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\domain\DeviceType.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\devices\repository\DeviceRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\events\application\EventPublisher.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\events\domain\Event.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\events\domain\EventType.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\events\repository\EventRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\gateway\DeviceGateway.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\gateway\GatewaySource.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\IrrigacaoApplication.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\irrigation\api\IrrigationController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\irrigation\application\IrrigationService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\irrigation\domain\IrrigationSession.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\irrigation\domain\IrrigationSessionStatus.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\irrigation\repository\IrrigationSessionRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\mock\MockGatewayService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\mock\MockSensorState.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\mock\MockSimulationScheduler.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\readings\api\ReadingController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\readings\application\ReadingService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\readings\domain\Reading.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\readings\repository\ReadingRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\sensors\api\SensorController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\sensors\application\SensorService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\sensors\domain\Sensor.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\sensors\domain\SensorType.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\sensors\repository\SensorRepository.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\users\api\UserController.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\users\application\UserService.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\users\domain\User.java
+C:\Users\PEDROHENRIQUETAVARES\Documents\Tecnico\pi-2026\backend\src\main\java\com\eldorado\irrigacao\users\repository\UserRepository.java
