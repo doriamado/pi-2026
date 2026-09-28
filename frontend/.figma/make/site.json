@@ -1,0 +1,10 @@
+{
+  "description": "Manage and monitor automated irrigation systems with real-time data, alerts, and device control for efficient agricultural practices.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

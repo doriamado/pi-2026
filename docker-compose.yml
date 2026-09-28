@@ -1,7 +1,5 @@
-version: "3.9"
-
 services:
-  postgres:
+  irrigacao-postgres:
     image: postgres:16-alpine
     container_name: irrigacao-postgres
     environment:
@@ -11,20 +9,25 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - irrigacao_pg_data:/var/lib/postgresql/data
-      - ./database/schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - irrigacao-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U irrigacao -d irrigacao"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
 
   backend:
     build: ./backend
-    container_name: irrigacao-backend
     depends_on:
-      - postgres
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/irrigacao
-      SPRING_DATASOURCE_USERNAME: irrigacao
-      SPRING_DATASOURCE_PASSWORD: irrigacao
+      irrigacao-postgres:
+        condition: service_healthy
     ports:
       - "8080:8080"
+    environment:
+      DB_URL: jdbc:postgresql://irrigacao-postgres:5432/irrigacao?currentSchema=verda
+      DB_USER: irrigacao
+      DB_PASSWORD: irrigacao
+      CORS_ORIGENS: http://localhost:5173,http://localhost:8443,http://localhost:3000
 
 volumes:
-  irrigacao_pg_data:
+  irrigacao-db-data:

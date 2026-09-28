@@ -1,119 +1,110 @@
-# Plataforma IoT — Irrigação Inteligente
+# Plataforma Verda — Irrigação IoT
 
-Estrutura inicial da aplicação fullstack, conforme as especificações de
-backend, frontend e banco de dados.
+Este pacote contém o **backend** (Spring Boot + Postgres) que faltava para o
+front-end React que você já tinha pronto. O front-end continua com o mesmo
+visual — só troquei os dados fixos (hardcoded) por chamadas reais à API.
 
-**Decisão de escopo (v1): não há autenticação.** Não existe módulo `auth`,
-tela de login, nem controle de sessão. O `User` existe apenas como dono de
-dispositivos.
+## O que mudou
 
-## Estrutura
+- **backend/** — API REST nova, em Java 21 / Spring Boot 3.3, usando
+  `JdbcTemplate` (SQL puro) em vez de JPA/Hibernate. Isso evita de propósito
+  o problema que você teve antes ("Hibernate não determina o Dialect por
+  falta de conexão JDBC"): sem Hibernate, não há dialect para detectar — a
+  aplicação só precisa que o Postgres esteja de pé.
+- **frontend/src/api.ts** — novo cliente HTTP que fala com o backend.
+- **frontend/src/App.tsx** — os componentes agora buscam dados de verdade
+  (`useEffect` + `fetch`) em vez de usar os arrays fixos que existiam antes.
+  Também corrigi um problema que existia no front original: clicar em
+  qualquer dispositivo sempre abria a tela fixa "Horta Norte" — agora cada
+  clique guarda o ID do dispositivo e abre os dados corretos dele.
+- **docker-compose.yml** (raiz) — sobe Postgres + backend juntos, usando o
+  mesmo nome de serviço `irrigacao-postgres` que você já usava.
 
-```
-irrigacao-iot-platform/
-├── backend/            Java 21 + Spring Boot (arquitetura em camadas)
-│   └── src/main/java/com/eldorado/irrigacao/
-│       ├── users/ devices/ sensors/ actuators/
-│       ├── readings/ automation/ alerts/ irrigation/ events/
-│       ├── gateway/     abstração DeviceGateway (fonte MOCK ou REAL)
-│       ├── mock/        Mock Gateway (obrigatório, simula sensores)
-│       └── dashboard/   resumo agregado para a tela inicial
-├── frontend/           React + TypeScript + Vite + Tailwind
-│   └── src/
-│       ├── pages/       Dashboard, Devices, Sensors, Automation, History, Alerts, Settings
-│       ├── components/  Navbar, Sidebar, MetricCard, DeviceCard, SensorCard, ChartCard, AlertCard
-│       └── lib/api.ts   único ponto de comunicação com o backend
-├── database/
-│   └── schema.sql       tabelas, relações e índices
-├── docker-compose.yml   sobe Postgres + backend
-└── backend/Dockerfile
-```
+## Como rodar
 
-## Arquitetura do backend
-
-```
-Controller → Application Service → Domain → Repository → Database
-```
-
-Cada módulo (`devices`, `sensors`, `automation`, ...) é autocontido, com
-suas próprias camadas `domain/`, `repository/`, `application/`, `api/`.
-Nenhuma regra de negócio vive nos controllers.
-
-### Device Gateway
-
-`gateway.DeviceGateway` é a única abstração que a aplicação conhece para
-entrada/saída de dados de dispositivos. Hoje só existe a implementação
-`MockGatewayService` (`gateway/GatewaySource.MOCK`). Quando o hardware real
-entrar (ESP32 via HTTP, depois MQTT/LoRa), basta criar uma nova
-implementação de `DeviceGateway` — nenhum outro módulo muda.
-
-### Mock Gateway
-
-Componente obrigatório (`mock/MockGatewayService`), roda em ciclo agendado
-(`@Scheduled`) e:
-- gera leituras para sensores virtuais registrados;
-- reduz a umidade do solo gradualmente;
-- aumenta a temperatura com pequena oscilação;
-- esvazia o reservatório aos poucos;
-- simula perda de conexão (chance por ciclo).
-
-Os dados são gravados nas mesmas tabelas dos dados reais, diferenciados
-apenas pelo campo `origem` (`MOCK`/`REAL`) — por isso o resto da plataforma
-não precisa de nenhuma adaptação para funcionar em modo simulação.
-
-### Motor de automação
-
-`automation.AutomationEngineService` roda em ciclo agendado, avalia todas
-as `AutomationRule` ativas contra a leitura mais recente de umidade e de
-reservatório, e aciona `IrrigationService.iniciar(...)` quando a condição é
-satisfeita — reaproveitando o mesmo fluxo do `POST /irrigation/start`
-manual. Trocar esse motor por um baseado em IA no futuro não deve exigir
-mudança na API pública.
-
-## Como rodar (desenvolvimento)
+### 1) Só o banco (para rodar o backend fora do Docker, como antes)
 
 ```bash
-# banco + backend
-docker compose up -d postgres
-./mvnw -f backend spring-boot:run
-# (no Windows: mvnw.cmd -f backend spring-boot:run)
+docker compose up -d irrigacao-postgres
 
-# frontend
-cd frontend && npm install && npm run dev
+
+### 2) Backend
+
+```bash
+cd backend
+./mvnw spring-boot:run   # ou: mvn spring-boot:run, se tiver o Maven instalado
 ```
 
-O `mvnw`/`mvnw.cmd` ficam na raiz do projeto (não dentro de `backend/`) e não
-exigem Maven instalado na máquina: na primeira execução eles baixam o Maven
-Wrapper oficial e, em seguida, a versão do Maven definida em
-`.mvn/wrapper/maven-wrapper.properties`. É necessário ter conexão com a
-internet na primeira execução e o JDK 21 configurado (`JAVA_HOME` ou `java`
-no PATH).
+A API sobe em `http://localhost:8080`. O schema (`schema.sql`) roda
+automaticamente na inicialização, e na primeira vez que o banco estiver
+vazio a aplicação semeia 4 dispositivos de demonstração com uma semana de
+histórico — os mesmos 4 que já estavam fixos no seu front-end original
+(Horta Norte, Estufa de tomates, Pomar Sul, Jardim da sede).
 
-O frontend espera o backend em `http://localhost:8080` (configurável via
-`VITE_API_URL`). CORS já liberado para `http://localhost:5173`.
+Por padrão um **simulador** roda a cada 1 minuto e gera novas leituras
+plausíveis para esses dispositivos (menos "Jardim da sede", que fica
+offline de propósito, como no protótipo original). Isso é só para a
+demonstração ficar viva sem precisar de um Arduino real conectado.
+Quando for ligar dispositivos de verdade, desligue o simulador:
 
-## Rodando no VS Code
+```yaml
+# application.yml ou variável de ambiente
+irrigacao:
+  simulador:
+    ativo: false   # ou SIMULADOR_ATIVO=false
+```
 
-O projeto já vem com `.vscode/extensions.json` sugerindo as extensões
-necessárias (Java/Spring Boot no backend, ESLint/Prettier/Tailwind no
-frontend). Ao abrir a pasta, o VS Code deve oferecer para instalá-las
-automaticamente — aceite a sugestão, ou instale manualmente pela aba de
-Extensões. Principais:
+e faça o firmware do Arduino chamar, a cada leitura:
 
-- **Extension Pack for Java** (`vscjava.vscode-java-pack`) — suporte a Java/Maven, já inclui suporte a Lombok no language server.
-- **Spring Boot Extension Pack** (`vmware.vscode-spring-boot`) — rodar/depurar a aplicação, autocomplete de `application.yml`.
-- **ESLint** / **Prettier** / **Tailwind CSS IntelliSense** — para o frontend.
-- **Docker** (`ms-azuretools.vscode-docker`) — subir o `docker-compose.yml` pela interface.
+```
+POST http://<host>:8080/api/ingest/{deviceId}/readings
+Content-Type: application/json
 
-Com as extensões instaladas, use o botão "Run" sobre `IrrigacaoApplication.java`
-(ou `F5`, já há um `launch.json` configurado) para rodar o backend direto pela
-IDE, sem precisar do terminal.
+{ "moisture": 62.5, "temperature": 24.1, "water": 78.0 }
+```
 
-## Pendências conhecidas (fora do escopo desta estruturação inicial)
+Se você definir `irrigacao.ingestao.chave-api` (ou `INGEST_API_KEY`), esse
+endpoint passa a exigir o header `X-Device-Key` com o mesmo valor.
 
-- Testes unitários/integração/API (spec exige, ainda não implementados).
-- WebSocket para tempo real (hoje o frontend faz polling).
-- Endpoints de `PATCH /users/{id}` e demais ainda usam `Map<String,String>`
-  como corpo simplificado — trocar por DTOs de validação (`jakarta.validation`)
-  antes de produção.
-- shadcn/ui não instalado (dependências base do Tailwind estão prontas para receber).
+### 3) Frontend
+
+```bash
+cd frontend
+pnpm install
+cp .env.example .env   # ajuste VITE_API_URL se o backend não estiver em localhost:8080
+pnpm dev
+```
+
+### 4) Tudo junto via Docker
+
+```bash
+docker compose up --build
+```
+
+## Principais endpoints
+
+| Rota | Descrição |
+|---|---|
+| `GET /api/dashboard` | Métricas da visão geral, gráfico de umidade das últimas 24h, alertas recentes, lista de dispositivos |
+| `GET /api/devices` | Lista de dispositivos (para a tela "Meus dispositivos") |
+| `GET /api/devices/{id}?days=1\|7` | Detalhe de um dispositivo + histórico |
+| `POST /api/devices` | Cadastra um dispositivo (`name`, `type`, `id`, `location`) |
+| `PATCH /api/devices/{id}/settings` | Salva limites de umidade/duração/automação |
+| `POST /api/devices/{id}/irrigation/start` \| `.../stop` | Controle manual da irrigação |
+| `GET /api/alerts?onlyUnread=` | Lista de alertas + resumo (não lidos, alta prioridade, etc.) |
+| `POST /api/alerts/read-all` \| `POST /api/alerts/{id}/read` | Marcar alertas como lidos |
+| `GET /api/settings` \| `PUT /api/settings` | Perfil, notificações e preferências |
+| `POST /api/ingest/{deviceId}/readings` | Endpoint de ingestão para o Arduino |
+
+Todos os dados sensíveis a limite (offline, água baixa, umidade baixa) são
+configuráveis em `application.yml`, seção `irrigacao.limites`.
+
+## Observações
+
+- Não há autenticação/login, exatamente como no protótipo original (v1).
+- O status "online/offline/alerta" de cada dispositivo é **calculado** a
+  cada requisição a partir da última leitura recebida — não é um campo que
+  possa ficar dessincronizado.
+- CORS já vem liberado para `localhost:5173`, `localhost:8443` (servidor de
+  dev do Figma Make) e `localhost:3000`; ajuste `CORS_ORIGENS` se precisar
+  de outra origem.
