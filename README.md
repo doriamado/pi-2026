@@ -2,7 +2,7 @@
 
 ## Como rodar
 
-### 1) Só o banco (para rodar o backend fora do Docker, como antes)
+### 1) Banco de Dados
 
 ```bash
 docker compose up -d irrigacao-postgres
