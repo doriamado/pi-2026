@@ -1,25 +1,5 @@
 # Plataforma Verda — Irrigação IoT
 
-Este pacote contém o **backend** (Spring Boot + Postgres) que faltava para o
-front-end React que você já tinha pronto. O front-end continua com o mesmo
-visual — só troquei os dados fixos (hardcoded) por chamadas reais à API.
-
-## O que mudou
-
-- **backend/** — API REST nova, em Java 21 / Spring Boot 3.3, usando
-  `JdbcTemplate` (SQL puro) em vez de JPA/Hibernate. Isso evita de propósito
-  o problema que você teve antes ("Hibernate não determina o Dialect por
-  falta de conexão JDBC"): sem Hibernate, não há dialect para detectar — a
-  aplicação só precisa que o Postgres esteja de pé.
-- **frontend/src/api.ts** — novo cliente HTTP que fala com o backend.
-- **frontend/src/App.tsx** — os componentes agora buscam dados de verdade
-  (`useEffect` + `fetch`) em vez de usar os arrays fixos que existiam antes.
-  Também corrigi um problema que existia no front original: clicar em
-  qualquer dispositivo sempre abria a tela fixa "Horta Norte" — agora cada
-  clique guarda o ID do dispositivo e abre os dados corretos dele.
-- **docker-compose.yml** (raiz) — sobe Postgres + backend juntos, usando o
-  mesmo nome de serviço `irrigacao-postgres` que você já usava.
-
 ## Como rodar
 
 ### 1) Só o banco (para rodar o backend fora do Docker, como antes)
@@ -54,7 +34,7 @@ irrigacao:
     ativo: false   # ou SIMULADOR_ATIVO=false
 ```
 
-e faça o firmware do Arduino chamar, a cada leitura:
+Funcionamento do firmware do Arduino (requisição a cada leitura):
 
 ```
 POST http://<host>:8080/api/ingest/{deviceId}/readings
@@ -62,9 +42,6 @@ Content-Type: application/json
 
 { "moisture": 62.5, "temperature": 24.1, "water": 78.0 }
 ```
-
-Se você definir `irrigacao.ingestao.chave-api` (ou `INGEST_API_KEY`), esse
-endpoint passa a exigir o header `X-Device-Key` com o mesmo valor.
 
 ### 3) Frontend
 
