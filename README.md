@@ -76,12 +76,3 @@ docker compose up --build
 Todos os dados sensíveis a limite (offline, água baixa, umidade baixa) são
 configuráveis em `application.yml`, seção `irrigacao.limites`.
 
-## Observações
-
-- Não há autenticação/login, exatamente como no protótipo original (v1).
-- O status "online/offline/alerta" de cada dispositivo é **calculado** a
-  cada requisição a partir da última leitura recebida — não é um campo que
-  possa ficar dessincronizado.
-- CORS já vem liberado para `localhost:5173`, `localhost:8443` (servidor de
-  dev do Figma Make) e `localhost:3000`; ajuste `CORS_ORIGENS` se precisar
-  de outra origem.
